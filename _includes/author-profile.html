@@ -3,11 +3,19 @@
 
 <div itemscope itemtype="https://schema.org/Person" class="h-card">
 
+  <a class="u-url hidden" rel="me" href="{{ '/' | relative_url }}">
+    Hidden microformat entry for representative h-card
+  </a>
+
   {% if author.avatar %}
     <div class="author__avatar">
-      <a href="{{ author.home | default: '/' | absolute_url }}">
+      {% if author.home %}
+        <a href="{{ author.home | relative_url }}">
+          <img src="{{ author.avatar | relative_url }}" alt="{{ author.name }}" itemprop="image" class="u-photo">
+        </a>
+      {% else %}
         <img src="{{ author.avatar | relative_url }}" alt="{{ author.name }}" itemprop="image" class="u-photo">
-      </a>
+      {% endif %}
     </div>
   {% endif %}
 
